@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Ant file - Apache Ant 1.8.1 -->
+
+<project name="Punto2-NYCSubway" default="jar" basedir=".">
+  
+  <path id="project.class.path">
+    <fileset dir="lib" includes="**/*.jar" />
+  </path>
+  
+  <target name="jar">
+    <delete dir="bin2" />
+    <mkdir dir="bin2" />
+    <javac includeAntRuntime="false" classpath="" encoding="UTF-8" srcdir="src" destdir="bin2">
+      <classpath refid="project.class.path" />
+    </javac>
+    <copy todir="bin2">
+      <fileset dir="src" includes="**/*.xls" />
+    </copy>
+    <delete dir="dist" />
+    <mkdir dir="dist" />
+    <copy todir="dist">
+      <fileset dir="." includes="lib/**" />
+    </copy>
+    <jar destfile="dist/Punto2-NYCSubway.jar" basedir="bin2"  manifest="manifest.punto2.mf" />
+    <echo file="dist/Punto2-NYCSubway.bat" message="java -jar Punto2-NYCSubway.jar" />
+    
+  </target>
+  
+</project>
